@@ -1,0 +1,46 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "commonjs",
+        "lib": ["esnext"],
+        "moduleResolution": "node",
+
+        "baseUrl": ".",
+        "outDir": "./build",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "removeComments": true,
+        "declaration": true,
+
+        "strict": true,
+        "noImplicitAny": false,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "strictNullChecks": false,
+        "strictPropertyInitialization": false,
+
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "paths": {
+            "*": [
+                "./src/*",
+                "./tests/*"
+            ],
+            "#/*": [
+                "./src/modules/*"
+            ]
+        }
+    },
+    "include": [
+        "./src/**/*.ts",
+        "./tests/**/*.ts"
+    ],
+    "exclude": [
+        "**/Ui/**",
+        "node_modules"
+    ]
+}

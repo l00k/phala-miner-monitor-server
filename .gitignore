@@ -1,0 +1,8 @@
+/node_modules
+/.dep
+/.db-data
+/.cert
+/var
+/build
+/vendor
+/.env

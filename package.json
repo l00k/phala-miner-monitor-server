@@ -1,0 +1,63 @@
+{
+    "name": "phala-miner-monitor",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "crawler:dev": "NODE_ENV=development ts-node-dev --respawn -r tsconfig-paths/register src/crawler.ts",
+        "api:dev": "NODE_ENV=development ts-node-dev --respawn -r tsconfig-paths/register src/api.ts",
+        "crawler:inspect": "NODE_ENV=development ts-node-dev --inspect --respawn -r tsconfig-paths/register src/crawler.ts",
+        "api:inspect": "NODE_ENV=development ts-node-dev --inspect --respawn -r tsconfig-paths/register src/api.ts",
+        "crawler:prod": "NODE_ENV=production ts-node --transpile-only -r tsconfig-paths/register src/crawler.ts",
+        "api:prod": "NODE_ENV=production ts-node --transpile-only -r tsconfig-paths/register src/api.ts"
+    },
+    "main": "src/main.ts",
+    "dependencies": {
+        "@100k/intiv": "^0.8.0",
+        "@100k/type-graphql-filter-mikroorm": "^0.2.2",
+        "@mikro-orm/cli": "^4.5.4",
+        "@mikro-orm/migrations": "^4.5.4",
+        "@mikro-orm/mysql": "^4.5.4",
+        "@mikro-orm/reflection": "^4.5.4",
+        "@phala/typedefs": "^0.2.1",
+        "@polkadot/api": "^4.17.1",
+        "@types/express": "^4.17",
+        "@types/jest": "^26.0.23",
+        "@types/lodash-es": "^4.17.4",
+        "@types/node": "^14.14.43",
+        "@types/validator": "^13.1.2",
+        "axios": "^0.21.1",
+        "bcrypt": "^5.0.1",
+        "class-validator": "^0.13.1",
+        "core-js": "^3.11.1",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-graphql": "^0.12.0",
+        "express-rate-limit": "^5.3.0",
+        "glob": "^7.1.6",
+        "graphql": "^15.5.0",
+        "graphql-fields": "^2.0.3",
+        "lodash-es": "^4.17.21",
+        "moment": "^2.29.1",
+        "qs": "^6.10.1",
+        "reflect-metadata": "^0.1.13",
+        "ts-node": "^9.1.1",
+        "tsc-watch": "^4.2.9",
+        "tslib": "^2.2.0",
+        "type-graphql": "^1.1.1",
+        "typescript": "^4.2.4"
+    },
+    "devDependencies": {
+        "graphql-playground-middleware-express": "^1.7.22",
+        "ts-node-dev": "^1.1.6"
+    },
+    "mikro-orm": {
+        "useTsNode": true,
+        "configPaths": [
+            "./src/config/services/orm.ts"
+        ]
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    }
+}

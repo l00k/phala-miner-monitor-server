@@ -1,0 +1,55 @@
+version: '3.6'
+
+networks:
+    default:
+        name: web-phala-miner-monitor-net
+        driver: bridge
+
+services:
+    db:
+        image: mysql:5.7
+        container_name: web-phala-miner-monitor-db
+        user: "1000:1000"
+        restart: "no"
+        env_file: .env
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=$DB_NAME
+            - MYSQL_USER=$DB_USER
+            - MYSQL_PASSWORD=$DB_PASSWORD
+            - TZ=Europe/Warsaw
+        networks:
+            - default
+        ports:
+            - 3306:3306
+        volumes:
+            - ./.db-data:/var/lib/mysql
+            - ./etc/mysql.conf.d:/etc/mysql/conf.d
+    node:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: web-phala-miner-monitor-node
+        container_name: web-phala-miner-monitor-node
+        user: "1000:1000"
+        restart: "no"
+        env_file: .env
+        environment:
+            - DB_HOST=$DB_HOST
+            - DB_PORT=$DB_PORT
+            - DB_NAME=$DB_NAME
+            - DB_USER=$DB_USER
+            - DB_PASSWORD=$DB_PASSWORD
+        links:
+            - db
+        networks:
+            - default
+        ports:
+            - 8084:8084
+        expose:
+            - 8084
+        volumes:
+            - .:/usr/src/app/:rw
+            - ./.cert:/usr/src/app/.cert:ro
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
